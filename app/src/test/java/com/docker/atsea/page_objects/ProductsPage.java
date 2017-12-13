@@ -19,7 +19,7 @@ public class ProductsPage {
     @FindBy(css = ".cartDigit")
     private WebElement productsInCart;
 
-    @FindBy(css = ".checkout-button span")
+    @FindBy(css = ".checkout-button")
     private WebElement checkoutButton;
 
 

@@ -8,7 +8,12 @@ Feature:
     Given I am an authenticated user
     When I add "Unusable Security" to my shopping cart
     Then my shopping cart should display "1" products
-    And Total price should be "$25.00"
-    When I checkout
-    And enter valid card details
-    Then the system will return "" message
+    And Total price should be "$26.50"
+    When I enter card information
+      | firstname | lastname | cardNumber | cvv | expiryDate |
+      | Sarndeep  | Nijjar   | 12315321   | 221 | 12/21      |
+    And I enter billing information
+      | company     | title | address     | city   |
+      | ecs-digital | Mr    | London Road | London |
+    And Submit the order to the system
+    Then the system will return "Please login before completing order..." message

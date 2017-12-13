@@ -1,7 +1,9 @@
 package com.docker.atsea.step_definitions;
 
 import com.docker.atsea.BrowserFactory;
+import com.docker.atsea.page_objects.CheckoutPage;
 import com.docker.atsea.page_objects.ProductsPage;
+import cucumber.api.DataTable;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -14,6 +16,10 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.PageFactory;
 import ru.stqa.selenium.factory.WebDriverPool;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import static junit.framework.Assert.*;
 
 /**
@@ -22,6 +28,7 @@ import static junit.framework.Assert.*;
 public class ProductOrderSteps {
 
     ProductsPage productPage;
+    CheckoutPage checkoutPage;
 
     @Given("^I am an authenticated user$")
     public void I_am_an_authenticated_user() throws Throwable {
@@ -47,24 +54,39 @@ public class ProductOrderSteps {
     @And("^Total price should be \"([^\"]*)\"$")
     public void Total_price_should_be(String totalPrice) throws Throwable {
         // Express the Regexp above with the code you wish you had
-        assertEquals(totalPrice, productPage.getCheckoutPage().getTotalPrice());
+        checkoutPage = productPage.getCheckoutPage();
+        assertEquals(totalPrice, checkoutPage.getTotalPrice());
     }
 
-    @When("^I checkout$")
-    public void I_checkout() throws Throwable {
-        // Express the Regexp above with the code you wish you had
-        throw new PendingException();
-    }
-
-    @And("^enter valid card details$")
-    public void enter_valid_card_details() throws Throwable {
-        // Express the Regexp above with the code you wish you had
-        throw new PendingException();
-    }
 
     @Then("^the system will return \"([^\"]*)\" message$")
     public void the_system_will_return_message(String message) throws Throwable {
-        // Express the Regexp above with the code you wish you had
-        throw new PendingException();
+        assertEquals(message, checkoutPage.getErrorMessage());
+    }
+
+    @When("^I enter card information$")
+    public void I_enter_card_information(DataTable cardDetails) throws Throwable {
+        List<Map<String, String>> cardDetailsMap = cardDetails.asMaps(String.class, String.class);
+        checkoutPage.enterCardInformation(cardDetailsMap.get(0).get("firstname"),
+                cardDetailsMap.get(0).get("lastname"),
+                cardDetailsMap.get(0).get("cardNumber"),
+                cardDetailsMap.get(0).get("cvv"),
+                cardDetailsMap.get(0).get("expiryDate"));
+    }
+
+    @And("^I enter billing information$")
+    public void I_enter_billing_information(DataTable billingInformation) throws Throwable {
+        List<Map<String, String>> billingInformationMap = billingInformation.asMaps(String.class, String.class);
+
+        checkoutPage.enterBillingInformation(billingInformationMap.get(0).get("company"),
+                billingInformationMap.get(0).get("title"),
+                billingInformationMap.get(0).get("address"),
+                billingInformationMap.get(0).get("city")
+        );
+    }
+
+    @And("^Submit the order to the system$")
+    public void Submit_the_order_to_tge_system() throws Throwable {
+        checkoutPage.completeOrder();
     }
 }
