@@ -62,3 +62,8 @@ Thumbs.db
 # Secrets folders #
 ###################
 prodsecrets
+
+Gemfile.lock
+reports
+
+rspec_html_reports/
