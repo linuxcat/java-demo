@@ -1,4 +1,4 @@
-Feature:
+Feature: Authenticated User can only order products
   As a web shopper
   I want to be able to purchase products from the atsea website
   So that I can spend my money and make the company rich
