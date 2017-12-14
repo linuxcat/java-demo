@@ -16,8 +16,8 @@
     <properties>
         <java.version>1.8</java.version>
         <h2.version>1.4.187</h2.version>
-        <skipITs>false</skipITs>
-        <skipUnitTests>false</skipUnitTests>
+        <skipUnitTests>true</skipUnitTests>
+        <skipITs>true</skipITs>
     </properties>
 
     <dependencies>
@@ -178,7 +178,10 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.19.1</version>
                 <configuration>
-                    <skipTests>true</skipTests>
+                    <skipTests>${skipUnitTests}</skipTests>
+                    <excludes>
+                        <exclude>**/RunAllTests.java</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
 
@@ -192,9 +195,9 @@
                     <execution>
                         <id>integration-tests</id>
                         <goals>
-                        <goal>integration-test</goal>
-                        <goal>verify</goal>
-                    </goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
 
                         <configuration>
                             <skipITs>${skipITs}</skipITs>
@@ -210,7 +213,6 @@
 
 
         </plugins>
-
 
 
     </build>

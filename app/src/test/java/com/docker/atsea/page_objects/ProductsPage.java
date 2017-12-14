@@ -22,6 +22,9 @@ public class ProductsPage {
     @FindBy(css = ".checkout-button")
     private WebElement checkoutButton;
 
+    @FindBy(css = ".navUser span")
+    private List<WebElement> navigationButtons;
+
 
     public int getNumberOfProducts() {
         return products.size();
@@ -40,6 +43,10 @@ public class ProductsPage {
     public CheckoutPage getCheckoutPage() {
         checkoutButton.click();;
         return PageFactory.initElements(BrowserFactory.getInstance(), CheckoutPage.class);
+    }
+
+    public void selectCreateUser() {
+        navigationButtons.get(0).click();
     }
 
 

@@ -51,6 +51,9 @@ public class CheckoutPage {
     @FindBy(className = "loginErrorMessage")
     private WebElement errorMessage;
 
+    @FindBy(className = "successMessage")
+    private WebElement successMessage;
+
 
 
     public String getTotalPrice() {
@@ -82,6 +85,11 @@ public class CheckoutPage {
     public String getErrorMessage() {
         waitForElement(errorMessage);
         return errorMessage.getText();
+    }
+
+    public String getSuccessMessage() {
+        waitForElement(successMessage);
+        return successMessage.getText();
     }
 
 }

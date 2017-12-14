@@ -26,4 +26,3 @@ INSERT INTO product (name, description, image, price) VALUES ('Experimental', 'T
 INSERT INTO product (name, description, image, price) VALUES ('Docker for Developers', 'Escape the App Dependency Matrix', '/images/8.png', 25);
 INSERT INTO product (name, description, image, price) VALUES ('DockerCon Copenhagen', 'DockerCon returns to Europe', '/images/9.png', 25);
 
-
