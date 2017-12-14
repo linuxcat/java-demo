@@ -56,9 +56,6 @@ public class ProductOrderSteps {
         productPage.selectCreateUser();
         createUserPage = PageFactory.initElements(driver, CreateUserPage.class);
         createUserPage.createUser("validUser", "validPassword");
-
-        BrowserUtils.sleep(10000);
-
     }
 
 
