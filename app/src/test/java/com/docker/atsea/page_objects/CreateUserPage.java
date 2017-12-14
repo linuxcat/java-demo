@@ -4,6 +4,8 @@ import com.docker.atsea.utils.BrowserUtils;
 import cucumber.api.java.en_lol.WEN;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import java.util.UUID;
+
 
 import static com.docker.atsea.utils.BrowserUtils.enterText;
 import static com.docker.atsea.utils.BrowserUtils.waitForElement;
@@ -30,7 +32,7 @@ public class CreateUserPage {
         usernameTextBox.click();
         usernameTextBox.sendKeys("u");
         usernameTextBox.click();
-        usernameTextBox.sendKeys(username);
+        usernameTextBox.sendKeys(username + UUID.randomUUID().toString());
         passwordTextBox.click();
         passwordTextBox.sendKeys("u");
         passwordTextBox.click();
