@@ -1,6 +1,6 @@
 require 'dockerspec/serverspec'
 
-describe docker_compose('docker-compose-dev.yml', wait: 20, rm: true) do
+describe docker_compose('docker-compose-dev.yml', wait: 30, rm: true) do
 
   its_container(:database) do
     describe port(5432) do
